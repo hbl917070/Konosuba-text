@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>美好字體 測試</title>
@@ -21,6 +21,11 @@
             background-attachment: fixed; /*固定位置*/
         }
 
+        body {
+            text-align: center;
+        }
+
+        /*1.00*/
         @font-face {
             font-family: 'Konosuba-Sans-Serif';
             src: url('Konosuba-Sans-Serif.ttf');
@@ -31,20 +36,30 @@
             src: url('Konosuba-Pop.ttf');
         }
 
+        /*1.02*/
+        @font-face {
+            font-family: 'Konosuba-SansSerif';
+            src: url('Konosuba-SansSerif.ttf');
+        }
+
+
+
         #center {
-            font-family: "Konosuba-Sans-Serif","Konosuba-Pop","微軟正黑體";
+            font-family: "Konosuba-SansSerif","Konosuba-Pop","微軟正黑體";
             margin: 10px;
             padding: 10px;
             border: 1px solid #000;
-            font-size: 40px;
+            font-size: 35px;
             position: relative;
+            display: inline-block;
         }
 
         #d {
             min-height: calc( 100vh - 150px);
             margin: 50px;
             z-index: 500;
-            overflow: auto;
+            min-width: 200px;
+            text-align: left;
         }
 
         /*角落裝飾*/
@@ -55,20 +70,24 @@
             background-size: 100% 100%;
             position: absolute;
         }
+
         .d_l_t {
             top: 10px;
             left: 10px;
         }
+
         .d_l_b {
             left: 10px;
             bottom: 10px;
             transform: rotate(270deg);
         }
+
         .d_r_b {
             right: 10px;
             bottom: 10px;
             transform: rotate(180deg);
         }
+
         .d_r_t {
             right: 10px;
             top: 10px;
@@ -84,11 +103,12 @@
 
     <div id="center">
         <div id="d" contenteditable="true">
-            在這裡可以直接輸入文字<br>
+            美好世界 文字測試（1.0.1）<br>
+            這裡可以直接輸入文字<br><br>
             0123456789<br>
-            ABCDEFGHIJK<br>
-            abcedfg
-            
+            abcdefghijklmnopqrstuvwxyz<br>
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
         </div>
         <div class="d_l_t"></div>
         <div class="d_l_b"></div>
