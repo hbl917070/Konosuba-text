@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
 
-    <script src="ckeditor/ckeditor.js"></script>
+    
 
     <!-- 
     <script src="js/sample.js"></script>
@@ -24,7 +24,7 @@
 
         html {
             background-image: url(b.jpg);
-            background-size: cover;
+            background-size: contain;
             background-position: center center; /*對齊位置*/
             background-attachment: fixed; /*固定位置*/
         }
@@ -65,9 +65,9 @@
         }
 
         hr {
-            height: 1px;
+            height: 3px;
             border: none;
-            background-color: #000;
+            background-color: rgb(78, 78, 78);
         }
 
         /*角落裝飾*/
@@ -184,7 +184,7 @@
                 </span>
 
                 <br>
-
+                <br>
 
 
 
@@ -204,19 +204,23 @@
 
 
         ///
-        ///如果是手機，只有電腦ckeditor
+        ///如果是手機，就不啟用ckeditor
         ///
         var useragent = navigator.userAgent;
         useragent = useragent.toLowerCase();
 
         if (useragent.indexOf('iphone') != -1 || useragent.indexOf('ipad') != -1 || useragent.indexOf('ipod') != -1 || useragent.indexOf('android') != -1) {
-         
-            document.getElementById("editor1").id = "";
 
+        
         } else {
+            var js = document.createElement("script")
+            js.src = "ckeditor/ckeditor.js";
+            document.body.appendChild(js);
+
             // Turn off automatic editor creation first.
             CKEDITOR.disableAutoInline = true;
             CKEDITOR.inline('editor1');
+           
         }
 
 
