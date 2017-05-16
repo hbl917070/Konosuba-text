@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>美好字體 測試</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+
+    <style type="text/css">
+        html, body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        html {
+            background-image: url(b.jpg);
+            background-size: cover;
+            background-position: center center; /*對齊位置*/
+            background-attachment: fixed; /*固定位置*/
+        }
+
+        @font-face {
+            font-family: 'Konosuba-Sans-Serif';
+            src: url('Konosuba-Sans-Serif.ttf');
+        }
+
+        @font-face {
+            font-family: 'Konosuba-Pop';
+            src: url('Konosuba-Pop.ttf');
+        }
+
+        #center {
+            font-family: "Konosuba-Sans-Serif","Konosuba-Pop","微軟正黑體";
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            font-size: 40px;
+            position: relative;
+        }
+
+        #d {
+            min-height: calc( 100vh - 150px);
+            margin: 50px;
+            z-index: 500;
+            overflow: auto;
+        }
+
+        /*角落裝飾*/
+        .d_l_t, .d_l_b, .d_r_b, .d_r_t {
+            width: 100px;
+            height: 100px;
+            background-image: url(z.png);
+            background-size: 100% 100%;
+            position: absolute;
+        }
+        .d_l_t {
+            top: 10px;
+            left: 10px;
+        }
+        .d_l_b {
+            left: 10px;
+            bottom: 10px;
+            transform: rotate(270deg);
+        }
+        .d_r_b {
+            right: 10px;
+            bottom: 10px;
+            transform: rotate(180deg);
+        }
+        .d_r_t {
+            right: 10px;
+            top: 10px;
+            transform: rotate(90deg);
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+
+    <div id="center">
+        <div id="d" contenteditable="true">
+            在這裡可以直接輸入文字<br>
+            0123456789<br>
+            ABCDEFGHIJK<br>
+            abcedfg
+            
+        </div>
+        <div class="d_l_t"></div>
+        <div class="d_l_b"></div>
+        <div class="d_r_t"></div>
+        <div class="d_r_b"></div>
+    </div>
+
+
+</body>
+</html>
