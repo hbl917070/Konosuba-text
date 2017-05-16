@@ -7,6 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
 
+    <script src="ckeditor/ckeditor.js"></script>
+    <!-- <script src="js/sample.js"></script> -->
+    <link rel="stylesheet" href="css/samples.css">
+    <link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css">
+
 
     <style type="text/css">
         html, body {
@@ -50,12 +55,12 @@
             margin: 10px;
             padding: 10px;
             border: 1px solid #000;
-            font-size: 35px;
+            font-size: 30px;
             position: relative;
             display: inline-block;
         }
 
-        #d {
+        #editor1 {
             min-height: calc( 100vh - 150px);
             margin: 50px;
             z-index: 500;
@@ -120,16 +125,16 @@
 <body>
 
     <!--材質-->
-    <div id="b3"></div>
+    <!--<div id="b3"></div>-->
 
     <div id="center">
-        <div id="d" contenteditable="true">
+        <div  id="editor1"  contenteditable="true">
             美好世界 文字測試<br>
             這裡可以直接輸入文字<br><br>
             0123456789<br>
             abcdefghijklmnopqrstuvwxyz<br>
             ABCDEFGHIJKLMNOPQRSTUVWXYZ
-            
+
         </div>
 
         <div class="d_l_t"></div>
@@ -138,6 +143,12 @@
         <div class="d_r_b"></div>
     </div>
 
+
+    <script>
+        // Turn off automatic editor creation first.
+        CKEDITOR.disableAutoInline = true;
+        CKEDITOR.inline('editor1');
+    </script>
 
 </body>
 </html>
