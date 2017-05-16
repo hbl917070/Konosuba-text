@@ -8,9 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
 
     <script src="ckeditor/ckeditor.js"></script>
-    <!-- <script src="js/sample.js"></script> -->
+
+    <!-- 
+    <script src="js/sample.js"></script>
     <link rel="stylesheet" href="css/samples.css">
     <link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css">
+    -->
 
 
     <style type="text/css">
@@ -28,13 +31,7 @@
 
         body {
             text-align: center;
-            color: rgb(60, 60, 60);
-        }
-
-        /*1.00*/
-        @font-face {
-            font-family: 'Konosuba-Sans-Serif';
-            src: url('Konosuba-Sans-Serif.ttf');
+            color: rgb(78, 78, 78);
         }
 
         @font-face {
@@ -42,7 +39,6 @@
             src: url('Konosuba-Pop.ttf');
         }
 
-        /*1.02*/
         @font-face {
             font-family: 'Konosuba-SansSerif';
             src: url('Konosuba-SansSerif.ttf');
@@ -52,27 +48,26 @@
 
         #center {
             font-family: "Konosuba-SansSerif","Konosuba-Pop","微軟正黑體";
-            margin: 10px;
+            margin: 50px;
             padding: 10px;
-            border: 1px solid #000;
+            border: 1px solid rgb(78, 78, 78);
             font-size: 30px;
             position: relative;
             display: inline-block;
         }
 
-        #editor1 {
-            min-height: calc( 100vh - 150px);
-            margin: 50px;
+        .edit {
+            min-height: 200px;
+            margin: 30px 40px;
             z-index: 500;
-            min-width: 200px;
+            min-width: 250px;
             text-align: left;
         }
 
-        hr{
-            height:1px;
-            border:none;
-            background-color:#000;
-
+        hr {
+            height: 1px;
+            border: none;
+            background-color: #000;
         }
 
         /*角落裝飾*/
@@ -83,6 +78,7 @@
             background-size: 100% 100%;
             position: absolute;
             pointer-events: none;
+            opacity:0.6;
         }
 
         .d_l_t {
@@ -135,22 +131,64 @@
     <!--<div id="b3"></div>-->
 
     <div id="center">
-        <div id="editor1" contenteditable="true">
+
+        <div id="editor1" class="edit" contenteditable="true">
+
+     
+
             <p style="text-align: center;">
-                <span style="font-size:36px;">為美好的世界獻上祝福 文字</span>
-            </p><hr><p>
+                <img src="line_up.png" width="430" />
+                <br>
+                <span style="font-size:30px;">為美好的世界獻上祝福<br>文字編輯器</span>
+                <br>
+                <img src="line_bottom.png" width="430" />
+
+            </p>
+         
+            
+            <p>
+
+
+
                 <span style="font-size:24px;">
-                    點擊後可以直接編輯<br>
-                    <br>0123456789<br>abcdefghijklmnopqrstuvwxyz<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ
-                </span>
-            </p><p><br></p><hr><p>
-                <span style="font-size:10pt;">
-                    <span style="font-family:微軟正黑體;">
-                        作者：hbl917070（深海異音）<br>
+                    <br>
+                    <span style="font-family:Konosuba-Pop;">
+                        abcdefghijklmnopqrstuvwxyz
                     </span>
-                </span><span style="font-size:10pt;">
-                    <span style="font-family: 微軟正黑體;">版本：1.0.1</span>
+                    <br>
+                    abcdefghijklmnopqrstuvwxyz
+                    <br>
+                    ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                    <br><br>
                 </span>
+            </p>
+
+
+
+            <hr>
+
+            <p>
+
+                <span style="font-size:10pt;">
+                    <span style="font-family: 微軟正黑體;">
+                        字體作者：<a href="http://www.nicovideo.jp/watch/sm28123789" target="_blank">http://www.nicovideo.jp/watch/sm28123789</a>
+                    </span>
+                </span>
+
+                <br>
+
+                <span style="font-size:10pt;">
+                    <span style="font-family: 微軟正黑體;">
+                        版本：1.0.2
+                    </span>
+                </span>
+
+                <br>
+
+
+
+
+
             </p>
 
         </div>
@@ -163,9 +201,26 @@
 
 
     <script>
-        // Turn off automatic editor creation first.
-        CKEDITOR.disableAutoInline = true;
-        CKEDITOR.inline('editor1');
+
+
+        ///
+        ///如果是手機，只有電腦ckeditor
+        ///
+        var useragent = navigator.userAgent;
+        useragent = useragent.toLowerCase();
+
+        if (useragent.indexOf('iphone') != -1 || useragent.indexOf('ipad') != -1 || useragent.indexOf('ipod') != -1 || useragent.indexOf('android') != -1) {
+         
+            document.getElementById("editor1").id = "";
+
+        } else {
+            // Turn off automatic editor creation first.
+            CKEDITOR.disableAutoInline = true;
+            CKEDITOR.inline('editor1');
+        }
+
+
+
     </script>
 
 </body>
