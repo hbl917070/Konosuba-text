@@ -23,6 +23,7 @@
 
         body {
             text-align: center;
+            color: rgb(60, 60, 60);
         }
 
         /*1.00*/
@@ -93,6 +94,22 @@
             top: 10px;
             transform: rotate(90deg);
         }
+
+        #b2 {
+            height: 100vh;
+            position: fixed;
+            z-index: 999;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            margin: 0px;
+            pointer-events: none;
+            background-image: url(b2.png);
+            background-size: cover;
+            background-position: center center; /*對齊位置*/
+            background-attachment: fixed; /*固定位置*/
+        }
     </style>
 
 </head>
@@ -101,15 +118,18 @@
 
 <body>
 
+    <!--材質-->
+    <div id="b2"></div>
+
     <div id="center">
         <div id="d" contenteditable="true">
-            美好世界 文字測試（1.0.1）<br>
+            美好世界 文字測試<br>
             這裡可以直接輸入文字<br><br>
             0123456789<br>
             abcdefghijklmnopqrstuvwxyz<br>
             ABCDEFGHIJKLMNOPQRSTUVWXYZ
-
         </div>
+
         <div class="d_l_t"></div>
         <div class="d_l_b"></div>
         <div class="d_r_t"></div>
