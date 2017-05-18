@@ -33,8 +33,8 @@
         }
 
         @font-face {
-            font-family: 'Konosuba';
-            src: url('Konosuba.ttf');
+            font-family: 'KonosubaMK3';
+            src: url('KonosubaMK3.ttf');
         }
 
         .title {
@@ -61,13 +61,12 @@
         }
 
         .edit {
-            font-family: "Konosuba";
+            font-family: "KonosubaMK3";
             min-height: 200px;
             margin: 40px;
             z-index: 500;
             min-width: 250px;
             text-align: left;
- 
             /*文字強制斷行*/
             /*word-wrap: break-word;*/
             /*word-break: break-all;*/
@@ -166,7 +165,7 @@
             display: inline-block;
             height: 40px;
             line-height: 40px;
-            font-family:"微軟正黑體";
+            font-family: "微軟正黑體";
             /*禁止選取*/
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -205,11 +204,28 @@
                 font-size: 24px;
                 margin-left: 0px;
             }
+
+        #div_loading {
+            background-color: rgba(0, 0, 0, 0.71);
+            height: 80px;
+            text-align: center;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            margin: auto;
+            font-family: "微軟正黑體";
+            font-size: 30px;
+            line-height: 80px;
+            color: #FFF;
+            z-index: 81000;
+        }
     </style>
 
 
 
-    <script>
+    <script type="text/javascript">
 
 
         ///
@@ -238,10 +254,12 @@
         ///
         function fun_截圖() {
 
+            document.getElementById("div_loading").style.display = "block";//顯示【轉換中】的視窗
+
             var obj_center = document.getElementById("center");
 
-            obj_center.className = "saveing";
-            document.getElementById("editor1").contentEditable = false;
+            obj_center.className = "saveing";//讓編輯區在視窗左上角，避免截圖錯誤
+            document.getElementById("editor1").contentEditable = false;//關閉編輯功能
 
             var w = obj_center.offsetWidth;
             var h = obj_center.offsetHeight;
@@ -266,9 +284,7 @@
 
                 onrendered: function (canvas) {
 
-
-
-                    obj_center.className = "";
+                    obj_center.className = "";//復原位置
                     document.getElementById("editor1").contentEditable = true;
                     try {
                         document.getElementById("img_output").src = canvas.toDataURL('image/jpeg', 0.8);
@@ -276,7 +292,8 @@
                         document.getElementById("img_output").src = document.getElementById("can").toDataURL();
                     }
 
-                    document.getElementById("div_output").style.display = "block";
+                    document.getElementById("div_loading").style.display = "none";//隱藏【轉換中】的視窗
+                    document.getElementById("div_output").style.display = "block";//第一次執行後才顯示輸出視窗
 
                 },
                 useCORS: true
@@ -292,6 +309,11 @@
 
 
 <body>
+
+    <div id="div_loading" style="display:none">
+        轉換中
+    </div>
+
 
     <!--【大標題】-->
     <div class="title">
@@ -364,25 +386,39 @@
             <p style="text-align: center;">
                 <img src="line_up.png" width="430" />
                 <br>
-                <span style="font-size:30px;font-family: 微軟正黑體;">為美好的世界獻上祝福<br>文字編輯器</span>
+
+                <span style="font-family: 微軟正黑體;font-size:36px;">
+                    為美好的世界獻上祝福<br>文字編輯器
+                </span>
                 <br>
                 <img src="line_bottom.png" width="430" />
             </p>
 
+            <p></p>
 
             <p>
                 <span style="font-size:24px;">
-                    <br>
+
                     <span style="font-family: 微軟正黑體;">
-                        在這裡輸入的英文會被轉換成對應的符號
+                        在這裡輸入的英文會被轉換成對應的異世界問題
                     </span>
-                    <br><br><br>
+
+                    <br><br>
+
+                    <span style="font-family: 微軟正黑體;">
+                        a~z：
+                    </span>
+                    <br>
+                    abcdefghijklmnopqrstuvwxyz
+
+                    <br><br>
                     <span style="font-family: 微軟正黑體;">
                         A~Z：
                     </span>
                     <br>
-                    abcdefghijklmnopqrstuvwxyz
-                    <br><br><br>
+                    ABCEDFGHIJKLMNOP<br>QRSTUVWXYZ
+                    <br><br>
+
                     <span style="font-family: 微軟正黑體;">
                         0~9：
                     </span>
@@ -443,7 +479,7 @@
     <div class="box">
         <h2>說明</h2>
 
-        說明：可以簡單快速的將【為美好的世界獻上祝福！(この素晴らしい世界に祝福を!)】中出現的異世界文字輸出成圖片。<br> 版本：1.0.0
+        說明：可以簡單快速的將【為美好的世界獻上祝福！(この素晴らしい世界に祝福を!)】中出現的異世界文字輸出成圖片。<br> 版本：1.0.1
         <br>
         討論區：
         <a href="" target="_blank">討論區</a>
