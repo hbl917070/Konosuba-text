@@ -13,10 +13,10 @@
  * (1) http://ckeditor.com/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) http://ckeditor.com/builder/70560623ca3eef6b4f8421ac04d4a29b
+ * (2) http://ckeditor.com/builder/55db03a2741b2b8079f3bd18db121f55
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) http://ckeditor.com/builder/download/70560623ca3eef6b4f8421ac04d4a29b
+ * (3) http://ckeditor.com/builder/download/55db03a2741b2b8079f3bd18db121f55
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -25,7 +25,7 @@
  */
 
 var CKBUILDER_CONFIG = {
-	skin: 'moono-lisa',
+	skin: 'moono-dark',
 	preset: 'full',
 	ignore: [
 		'.DS_Store',
@@ -51,6 +51,7 @@ var CKBUILDER_CONFIG = {
 	plugins : {
 		'a11yhelp' : 1,
 		'about' : 1,
+		'base64image' : 1,
 		'basicstyles' : 1,
 		'bidi' : 1,
 		'blockquote' : 1,
@@ -75,6 +76,7 @@ var CKBUILDER_CONFIG = {
 		'htmlwriter' : 1,
 		'iframe' : 1,
 		'image' : 1,
+		'imagepaste' : 1,
 		'indentblock' : 1,
 		'indentlist' : 1,
 		'justify' : 1,
@@ -90,6 +92,7 @@ var CKBUILDER_CONFIG = {
 		'pastetext' : 1,
 		'preview' : 1,
 		'print' : 1,
+		'quicktable' : 1,
 		'removeformat' : 1,
 		'resize' : 1,
 		'save' : 1,
@@ -103,10 +106,12 @@ var CKBUILDER_CONFIG = {
 		'stylescombo' : 1,
 		'tab' : 1,
 		'table' : 1,
+		'tableresize' : 1,
 		'tabletools' : 1,
 		'templates' : 1,
 		'toolbar' : 1,
 		'undo' : 1,
+		'uploadimage' : 1,
 		'wsc' : 1,
 		'wysiwygarea' : 1
 	},

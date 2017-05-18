@@ -3,18 +3,18 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>美好字體 測試</title>
+    <title>異世界文字 產生器</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
 
-    
 
-    <!-- 
+
+    <!--
     <script src="js/sample.js"></script>
     <link rel="stylesheet" href="css/samples.css">
     <link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css">
     -->
-
+    <script type="text/javascript" async="" src="html2canvas.js"></script>
 
     <style type="text/css">
         html, body {
@@ -23,46 +23,54 @@
         }
 
         html {
-            background-image: url(b.jpg);
-            background-size: cover;
-            background-position: center center; /*對齊位置*/
-            background-attachment: fixed; /*固定位置*/
-            background-repeat: no-repeat ;   /*不重複*/
+            background-color: rgb(213, 213, 213);
         }
 
         body {
             text-align: center;
             color: rgb(78, 78, 78);
+            margin: 5px;
         }
 
         @font-face {
-            font-family: 'Konosuba-Pop';
-            src: url('Konosuba-Pop.ttf');
+            font-family: 'Konosuba';
+            src: url('Konosuba.ttf');
         }
 
-        @font-face {
-            font-family: 'Konosuba-SansSerif';
-            src: url('Konosuba-SansSerif.ttf');
+        .title {
+            background-color: rgb(0, 0, 0);
+            margin: -5px;
+            font-family: "微軟正黑體";
         }
 
-
+            .title h1 {
+                margin: 0px;
+                color: #FFF;
+                font-size: 24px;
+                padding: 10px;
+            }
 
         #center {
-            font-family: "Konosuba-SansSerif","Konosuba-Pop","微軟正黑體";
-            margin: 50px;
+            margin: 10px;
             padding: 10px;
-            border: 1px solid rgb(78, 78, 78);
             font-size: 30px;
             position: relative;
             display: inline-block;
+            background-image: url(b.jpg);
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.85);
         }
 
         .edit {
+            font-family: "Konosuba";
             min-height: 200px;
-            margin: 30px 40px;
+            margin: 40px;
             z-index: 500;
             min-width: 250px;
             text-align: left;
+ 
+            /*文字強制斷行*/
+            /*word-wrap: break-word;*/
+            /*word-break: break-all;*/
         }
 
         hr {
@@ -73,54 +81,211 @@
 
         /*角落裝飾*/
         .d_l_t, .d_l_b, .d_r_b, .d_r_t {
-            width: 100px;
-            height: 100px;
+            width: 70px;
+            height: 70px;
             background-image: url(z.png);
             background-size: 100% 100%;
             position: absolute;
             pointer-events: none;
-            opacity:0.6;
         }
 
         .d_l_t {
-            top: 10px;
-            left: 10px;
+            top: 20px;
+            left: 20px;
         }
 
         .d_l_b {
-            left: 10px;
-            bottom: 10px;
+            left: 20px;
+            bottom: 20px;
             transform: rotate(270deg);
         }
 
         .d_r_b {
-            right: 10px;
-            bottom: 10px;
+            right: 20px;
+            bottom: 20px;
             transform: rotate(180deg);
         }
 
         .d_r_t {
-            right: 10px;
-            top: 10px;
+            right: 20px;
+            top: 20px;
             transform: rotate(90deg);
         }
 
         #b3 {
-            height: 100vh;
-            position: fixed;
+            position: absolute;
             z-index: 999;
             top: 0px;
             left: 0px;
             right: 0px;
             bottom: 0px;
-            margin: 0px;
             pointer-events: none;
             background-image: url(b3.png);
-            background-size: 100% 100%;
-            background-position: center center; /*對齊位置*/
-            background-attachment: fixed; /*固定位置*/
+            /*background-size: 1024px 1024px;*/
+            /*background-attachment: fixed;*/ /*固定位置*/
         }
+
+        #border {
+            position: absolute;
+            z-index: 998;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            margin: 0px;
+            border: 2px solid rgb(78, 78, 78);
+            margin: 10px;
+            pointer-events: none;
+        }
+
+        .saveing {
+            position: fixed !important;
+            top: 0px !important;
+            left: 0px !important;
+            margin: 0px !important;
+        }
+
+        #can {
+            width: 0px;
+            height: 0px;
+            position: fixed;
+            top: -10px;
+            left: -10px;
+        }
+
+        #img_output {
+            width: 90%;
+            margin: auto;
+        }
+
+        .but {
+            margin: 5px 5px 5px 0px;
+            padding: 0px 10px;
+            background-color: rgb(0, 177, 255);
+            color: #fff;
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            font-family:"微軟正黑體";
+            /*禁止選取*/
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            .but:hover {
+                background-color: rgb(0, 125, 196);
+            }
+
+            .but:active {
+                transform: scale(1.03);
+                background-color: rgb(0, 196, 136);
+            }
+
+        input[type=checkbox] {
+            transform: scale(1.5);
+        }
+
+        .box {
+            background-color: rgba(255, 255, 255, 1);
+            margin: auto;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.35);
+            border-radius: 3px;
+            padding: 5px;
+            max-width: 900px;
+            text-align: left;
+            font-family: "微軟正黑體";
+        }
+
+            .box h2 {
+                margin: 0px;
+                margin-bottom: 10px;
+                font-size: 24px;
+                margin-left: 0px;
+            }
     </style>
+
+
+
+    <script>
+
+
+        ///
+        ///
+        ///
+        function fun_save_img() {
+
+            //設定檔名
+            var d = new Date();
+            var name = d.getFullYear() + "-" +
+                ("00" + (d.getMonth() + 1)).slice(-2) + "-" +
+                ("00" + d.getDate()).slice(-2) + " " +
+                ("00" + d.getHours()).slice(-2) + "-"
+                + ("00" + d.getMinutes()).slice(-2) + "-"
+                + ("00" + d.getSeconds()).slice(-2);
+            name += ".png";
+
+            document.getElementById("a_download").setAttribute("download", name);
+            document.getElementById("a_download").href = document.getElementById("img_output").src;
+            document.getElementById("a_download").click();
+        }
+
+
+        ///
+        ///
+        ///
+        function fun_截圖() {
+
+            var obj_center = document.getElementById("center");
+
+            obj_center.className = "saveing";
+            document.getElementById("editor1").contentEditable = false;
+
+            var w = obj_center.offsetWidth;
+            var h = obj_center.offsetHeight;
+
+            //要將 canvas 的寬高設置成容器寬高的 2 倍
+            //var canvas = document.createElement("canvas");
+            var canvas = document.getElementById("can");
+
+            canvas.width = w * 2;
+            canvas.height = h * 2;
+            //canvas.style.width = w / 2 + "px";
+            //canvas.style.height = h / 2 + "px";
+            var context = canvas.getContext("2d");
+            //然後將畫布縮放，將圖像放大兩倍畫到畫布上
+
+            context.save();
+            context.scale(2, 2);
+
+
+            html2canvas(obj_center, {
+                canvas: canvas,
+
+                onrendered: function (canvas) {
+
+
+
+                    obj_center.className = "";
+                    document.getElementById("editor1").contentEditable = true;
+                    try {
+                        document.getElementById("img_output").src = canvas.toDataURL('image/jpeg', 0.8);
+                    } catch (e) {
+                        document.getElementById("img_output").src = document.getElementById("can").toDataURL();
+                    }
+
+                    document.getElementById("div_output").style.display = "block";
+
+                },
+                useCORS: true
+
+            });
+        }
+
+    </script>
+
 
 </head>
 
@@ -128,69 +293,108 @@
 
 <body>
 
-    <!--材質-->
-    <!--<div id="b3"></div>-->
+    <!--【大標題】-->
+    <div class="title">
+        <h1>異世界文字 產生器</h1>
+    </div>
+
+    <br><br>
+
+    <div class="box">
+        <h2>設定</h2>
+        <label>
+            <input type="checkbox" id="checkbox_max_width" />
+            鎖定寬度
+        </label>
+        <input type="tel" id="text_max_width" value="300" style="width:80px" />
+        px
+        <br><br>
+        <label>
+            <input type="checkbox" id="checkbox_old" />
+            老舊效果
+        </label>
+
+
+    </div>
+
+
+    <br><br>
+
+
+    <script>
+
+        var checkbox_max_width = document.getElementById("checkbox_max_width");
+        var text_max_width = document.getElementById("text_max_width");
+
+        checkbox_max_width.onchange = function () {
+            if (checkbox_max_width.checked) {
+                document.getElementById("editor1").style.width = text_max_width.value + "px";
+            } else {
+                document.getElementById("editor1").style.width = "";
+            }
+        };
+        text_max_width.onkeyup = function () {
+            if (checkbox_max_width.checked) {
+                document.getElementById("editor1").style.width = text_max_width.value + "px";
+            } else {
+                document.getElementById("editor1").style.width = "";
+            }
+        };
+        checkbox_max_width.checked = false;
+
+        var checkbox_old = document.getElementById("checkbox_old");
+        checkbox_old.onchange = function () {
+            if (checkbox_old.checked) {
+                document.getElementById("b3").style.display = "block";
+            } else {
+                document.getElementById("b3").style.display = "none";
+            }
+        };
+        checkbox_old.checked = true;
+    </script>
+
+
 
     <div id="center">
 
-        <div id="editor1" class="edit" contenteditable="true">
 
-     
+
+        <div id="editor1" class="edit" contenteditable="true">
 
             <p style="text-align: center;">
                 <img src="line_up.png" width="430" />
                 <br>
-                <span style="font-size:30px;">為美好的世界獻上祝福<br>文字編輯器</span>
+                <span style="font-size:30px;font-family: 微軟正黑體;">為美好的世界獻上祝福<br>文字編輯器</span>
                 <br>
                 <img src="line_bottom.png" width="430" />
-
             </p>
-         
-            
+
+
             <p>
-
-
-
                 <span style="font-size:24px;">
                     <br>
-                    <span style="font-family:Konosuba-Pop;">
-                        abcdefghijklmnopqrstuvwxyz
+                    <span style="font-family: 微軟正黑體;">
+                        在這裡輸入的英文會被轉換成對應的符號
+                    </span>
+                    <br><br><br>
+                    <span style="font-family: 微軟正黑體;">
+                        A~Z：
                     </span>
                     <br>
                     abcdefghijklmnopqrstuvwxyz
+                    <br><br><br>
+                    <span style="font-family: 微軟正黑體;">
+                        0~9：
+                    </span>
                     <br>
-                    ABCDEFGHIJKLMNOPQRSTUVWXYZ
+                    0123456789
                     <br><br>
                 </span>
-            </p>
-
-
-
-            <hr>
-
-            <p>
-
-                <span style="font-size:10pt;">
-                    <span style="font-family: 微軟正黑體;">
-                        字體作者：<a href="http://www.nicovideo.jp/watch/sm28123789" target="_blank">http://www.nicovideo.jp/watch/sm28123789</a>
-                    </span>
-                </span>
-
-                <br>
-
-                <span style="font-size:10pt;">
-                    <span style="font-family: 微軟正黑體;">
-                        版本：1.0.2
-                    </span>
-                </span>
-
-                <br>
-                <br>
-
-
 
 
             </p>
+
+
 
         </div>
 
@@ -198,7 +402,65 @@
         <div class="d_l_b"></div>
         <div class="d_r_t"></div>
         <div class="d_r_b"></div>
+
+        <!--材質-->
+        <div id="b3"></div>
+
+        <div id="border"></div>
     </div>
+
+
+
+    <br>
+
+
+
+    <div class="but" onclick="fun_截圖()"> 匯出成圖片</div>
+    <a>　　　　</a>
+    <div class="but" onclick="document.getElementById('editor1').innerHTML=''">清空內容</div>
+
+
+
+
+    <br><br><br><br>
+
+    <div class="box" id="div_output" style="display:none;">
+        <h2>輸出結果</h2>
+        <a id="a_download"></a>
+
+        <canvas id="can"></canvas>
+        <div style="text-align:center">
+            <img id="img_output" style="margin:auto;" />
+        </div>
+
+        <br>
+        <div class="but" onclick="fun_save_img()" title="儲存圖片">儲存圖片</div>
+        <p>如果圖片無法順利儲存，請自行右鍵存圖（手機長按圖片存圖）</p>
+    </div>
+
+    <br><br>
+
+    <div class="box">
+        <h2>說明</h2>
+
+        說明：可以簡單快速的將【為美好的世界獻上祝福！(この素晴らしい世界に祝福を!)】中出現的異世界文字輸出成圖片。<br> 版本：1.0.0
+        <br>
+        討論區：
+        <a href="" target="_blank">討論區</a>
+        <br>
+        字體作者：
+        <a href="https://home.gamer.com.tw/creationDetail.php?sn=3504010" target="_blank">mdma98765432（里繆艾萊．赫．瓦萊）</a>
+
+        <br>
+        網站作者：
+        <a href="https://home.gamer.com.tw/homeindex.php?owner=hbl917070" target="_blank">hbl917070（深海異音）</a>
+
+    </div>
+
+    <br><br>
+
+
+
 
 
     <script>
@@ -212,16 +474,10 @@
 
         if (useragent.indexOf('iphone') != -1 || useragent.indexOf('ipad') != -1 || useragent.indexOf('ipod') != -1 || useragent.indexOf('android') != -1) {
 
-        
         } else {
             var js = document.createElement("script")
             js.src = "ckeditor/ckeditor.js";
             document.body.appendChild(js);
-
-            // Turn off automatic editor creation first.
-            CKEDITOR.disableAutoInline = true;
-            CKEDITOR.inline('editor1');
-           
         }
 
 
