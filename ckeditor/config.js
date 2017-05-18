@@ -31,4 +31,11 @@ CKEDITOR.editorConfig = function( config ) {
 	
 	//還原次數
 	config.undoStackSize = 50;
+
+    //按enter直接換行，而不是產生一個<p>
+	config.enterMode = CKEDITOR.ENTER_BR;
+	config.shiftEnterMode = CKEDITOR.ENTER_P;
+
+
+
 };

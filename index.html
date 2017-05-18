@@ -56,7 +56,7 @@
             font-size: 30px;
             position: relative;
             display: inline-block;
-            background-image: url(b.jpg);
+            background-image: url(imgs/b.jpg);
             box-shadow: 0px 0px 20px rgba(0,0,0,0.85);
         }
 
@@ -72,6 +72,10 @@
             /*word-break: break-all;*/
         }
 
+            .edit img {
+                opacity: 0.6;
+            }
+
         hr {
             height: 3px;
             border: none;
@@ -82,7 +86,7 @@
         .d_l_t, .d_l_b, .d_r_b, .d_r_t {
             width: 70px;
             height: 70px;
-            background-image: url(z.png);
+            background-image: url(imgs/z.png);
             background-size: 100% 100%;
             position: absolute;
             pointer-events: none;
@@ -119,7 +123,7 @@
             right: 0px;
             bottom: 0px;
             pointer-events: none;
-            background-image: url(b3.png);
+            background-image: url(imgs/b3.png);
             /*background-size: 1024px 1024px;*/
             /*background-attachment: fixed;*/ /*固定位置*/
         }
@@ -206,10 +210,21 @@
             }
 
         #div_loading {
-            background-color: rgba(0, 0, 0, 0.71);
+            background-color: rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            margin: auto;
+            z-index: 81000;
+        }
+
+        #div_loading_t {
+            background-color: rgba(0, 167, 39, 0.66);
             height: 80px;
             text-align: center;
-            position: fixed;
+            position: absolute;
             top: 0px;
             left: 0px;
             right: 0px;
@@ -219,10 +234,14 @@
             font-size: 30px;
             line-height: 80px;
             color: #FFF;
-            z-index: 81000;
         }
     </style>
 
+
+    <!--輸出時隱藏表格框線-->
+    <style id="css_table_none">
+    
+    </style>
 
 
     <script type="text/javascript">
@@ -241,7 +260,7 @@
                 ("00" + d.getHours()).slice(-2) + "-"
                 + ("00" + d.getMinutes()).slice(-2) + "-"
                 + ("00" + d.getSeconds()).slice(-2);
-            name += ".png";
+            name += ".jpg";
 
             document.getElementById("a_download").setAttribute("download", name);
             document.getElementById("a_download").href = document.getElementById("img_output").src;
@@ -252,9 +271,36 @@
         ///
         ///
         ///
+        function fun_隱藏表格框線(bool_) {
+
+            
+            if (bool_) {
+                document.getElementById("css_table_none").innerHTML =
+                    ".cke_show_borders table.cke_show_border, .cke_show_borders table.cke_show_border > tr > td," +
+                    ".cke_show_borders table.cke_show_border > tr > th, .cke_show_borders table.cke_show_border > tbody > tr > td," +
+                    ".cke_show_borders table.cke_show_border > tbody > tr > th, .cke_show_borders table.cke_show_border > thead > tr > td," +
+                    ".cke_show_borders table.cke_show_border > thead > tr > th, .cke_show_borders table.cke_show_border > tfoot > tr > td," +
+                    ".cke_show_borders table.cke_show_border > tfoot > tr > th {" +
+                    "    border: none !important;" +
+                    "}"
+                ;
+
+            } else {
+                document.getElementById("css_table_none").innerHTML = "";
+            }
+
+        }
+
+        ///
+        ///
+        ///
         function fun_截圖() {
 
             document.getElementById("div_loading").style.display = "block";//顯示【轉換中】的視窗
+
+            fun_隱藏表格框線(true);
+
+
 
             var obj_center = document.getElementById("center");
 
@@ -268,40 +314,49 @@
             //var canvas = document.createElement("canvas");
             var canvas = document.getElementById("can");
 
-            canvas.width = w * 2;
-            canvas.height = h * 2;
+            canvas.width = w * double_output;
+            canvas.height = h * double_output;
             //canvas.style.width = w / 2 + "px";
             //canvas.style.height = h / 2 + "px";
             var context = canvas.getContext("2d");
             //然後將畫布縮放，將圖像放大兩倍畫到畫布上
 
             context.save();
-            context.scale(2, 2);
+            context.scale(double_output, double_output);
 
+            //return;
 
-            html2canvas(obj_center, {
-                canvas: canvas,
+            setTimeout(function () {
 
-                onrendered: function (canvas) {
+                html2canvas(obj_center, {
+                    canvas: canvas,
 
-                    obj_center.className = "";//復原位置
-                    document.getElementById("editor1").contentEditable = true;
-                    try {
-                        document.getElementById("img_output").src = canvas.toDataURL('image/jpeg', 0.8);
-                    } catch (e) {
-                        document.getElementById("img_output").src = document.getElementById("can").toDataURL();
+                    onrendered: function (canvas) {
+
+                        obj_center.className = "";//復原位置
+                        document.getElementById("editor1").contentEditable = true;
+                        try {
+                            document.getElementById("img_output").src = canvas.toDataURL('image/jpeg', 0.8);
+                        } catch (e) {
+                            document.getElementById("img_output").src = document.getElementById("can").toDataURL();
+                        }
+
+                        fun_隱藏表格框線(false);
+                        document.getElementById("div_loading").style.display = "none";//隱藏【轉換中】的視窗
+                        document.getElementById("div_output").style.display = "block";//第一次執行後才顯示輸出視窗
                     }
 
-                    document.getElementById("div_loading").style.display = "none";//隱藏【轉換中】的視窗
-                    document.getElementById("div_output").style.display = "block";//第一次執行後才顯示輸出視窗
+                });
+            }, 300);
 
-                },
-                useCORS: true
+     
 
-            });
+
+
         }
 
     </script>
+
 
 
 </head>
@@ -310,8 +365,9 @@
 
 <body>
 
+    <!--轉換中-->
     <div id="div_loading" style="display:none">
-        轉換中
+        <div id="div_loading_t">轉換中</div>
     </div>
 
 
@@ -322,48 +378,73 @@
 
     <br><br>
 
+
+
+    <!--【設定】區域-->
     <div class="box">
         <h2>設定</h2>
+
         <label>
             <input type="checkbox" id="checkbox_max_width" />
             鎖定寬度
         </label>
         <input type="tel" id="text_max_width" value="300" style="width:80px" />
         px
-        <br><br>
+
+        <div style="height:15px;"></div>
+
         <label>
             <input type="checkbox" id="checkbox_old" />
             老舊效果
         </label>
 
 
+
+        <div class="only_phone">
+            <div style="height:15px;"></div>
+            <label>
+                <input type="checkbox" id="checkbox_font_microsoft" />
+                微軟正黑體
+            </label>
+        </div>
+
+
+        <div style="height:15px;"></div>
+
+
+        輸出品質：
+        <input type="range" id="range_output_size" min="100" max="200" step="10" value="120" />
+        <a id="a_output_size_value">(120%)</a>
+
+
+        <div class="only_phone">
+            <div style="height:15px;"></div>
+            文字大小：
+            <input type="range" id="range_font_size" min="10" max="90" step="10" value="20" />
+            <a id="a_font_size_value">(20px)</a>
+        </div>
+
     </div>
 
+    <script type="text/javascript">
 
-    <br><br>
 
-
-    <script>
-
+        //鎖定寬度
         var checkbox_max_width = document.getElementById("checkbox_max_width");
         var text_max_width = document.getElementById("text_max_width");
-
-        checkbox_max_width.onchange = function () {
+        function fun_鎖定寬度() {
             if (checkbox_max_width.checked) {
                 document.getElementById("editor1").style.width = text_max_width.value + "px";
             } else {
                 document.getElementById("editor1").style.width = "";
             }
-        };
-        text_max_width.onkeyup = function () {
-            if (checkbox_max_width.checked) {
-                document.getElementById("editor1").style.width = text_max_width.value + "px";
-            } else {
-                document.getElementById("editor1").style.width = "";
-            }
-        };
+        }
+        checkbox_max_width.onchange = fun_鎖定寬度;
+        text_max_width.onkeyup = fun_鎖定寬度;
         checkbox_max_width.checked = false;
 
+
+        //啟用老舊效果
         var checkbox_old = document.getElementById("checkbox_old");
         checkbox_old.onchange = function () {
             if (checkbox_old.checked) {
@@ -373,25 +454,61 @@
             }
         };
         checkbox_old.checked = true;
+
+
+        //微軟正黑體
+        var checkbox_font_microsoft = document.getElementById("checkbox_font_microsoft");
+        checkbox_font_microsoft.onchange = function () {
+            if (checkbox_font_microsoft.checked) {
+                document.getElementById("editor1").style.fontFamily = "微軟正黑體";
+            } else {
+                document.getElementById("editor1").style.fontFamily = "";
+            }
+        };
+        checkbox_font_microsoft.checked = false;
+
+        //輸出品質
+        var double_output = 1.2;
+        document.getElementById("range_output_size").onchange = function () {
+            document.getElementById("a_output_size_value").innerHTML = "(" + this.value + "%)";
+            double_output = document.getElementById("range_output_size").value / 100;
+        };
+        document.getElementById("range_output_size").value = 120;
+
+        //文字大小
+        document.getElementById("range_font_size").onchange = function () {
+            document.getElementById("a_font_size_value").innerHTML = "(" + this.value + "px)";
+            document.getElementById("editor1").style.fontSize = this.value + "px";
+            var ar_span = document.getElementById("editor1").getElementsByTagName("span");
+            for (var i = 0; i < ar_span.length; i++) {
+                ar_span[i].style.fontSize = "";
+            }
+        };
+        document.getElementById("range_font_size").value = 20;
+
+
     </script>
 
 
+    <br><br>
 
+
+
+
+    <!--【編輯】區域-->
     <div id="center">
-
-
 
         <div id="editor1" class="edit" contenteditable="true">
 
             <p style="text-align: center;">
-                <img src="line_up.png" width="430" />
+                <img src="imgs/line_up.png" width="430" />
                 <br>
 
                 <span style="font-family: 微軟正黑體;font-size:36px;">
                     為美好的世界獻上祝福<br>文字編輯器
                 </span>
                 <br>
-                <img src="line_bottom.png" width="430" />
+                <img src="imgs/line_bottom.png" width="430" />
             </p>
 
             <p></p>
@@ -409,14 +526,14 @@
                         a~z：
                     </span>
                     <br>
-                    abcdefghijklmnopqrstuvwxyz
+                    abcdefgh<br>ijklmnop<br>qrstuvwx<br>yz
 
                     <br><br>
                     <span style="font-family: 微軟正黑體;">
                         A~Z：
                     </span>
                     <br>
-                    ABCEDFGHIJKLMNOP<br>QRSTUVWXYZ
+                    ABCEDFGH<br>IJKLMNOP<br>QRSTUVWX<br>YZ
                     <br><br>
 
                     <span style="font-family: 微軟正黑體;">
@@ -426,14 +543,11 @@
                     0123456789
                     <br><br>
                 </span>
-
-
             </p>
-
-
 
         </div>
 
+        <!--4個角落-->
         <div class="d_l_t"></div>
         <div class="d_l_b"></div>
         <div class="d_r_t"></div>
@@ -442,7 +556,9 @@
         <!--材質-->
         <div id="b3"></div>
 
+        <!--外框-->
         <div id="border"></div>
+
     </div>
 
 
@@ -450,16 +566,17 @@
     <br>
 
 
-
+    <!--按鈕群-->
     <div class="but" onclick="fun_截圖()"> 匯出成圖片</div>
     <a>　　　　</a>
     <div class="but" onclick="document.getElementById('editor1').innerHTML=''">清空內容</div>
 
 
 
-
     <br><br><br><br>
 
+
+    <!--【輸出結果】區域-->
     <div class="box" id="div_output" style="display:none;">
         <h2>輸出結果</h2>
         <a id="a_download"></a>
@@ -467,6 +584,7 @@
         <canvas id="can"></canvas>
         <div style="text-align:center">
             <img id="img_output" style="margin:auto;" />
+            <div id="div_img_size"></div>
         </div>
 
         <br>
@@ -474,12 +592,18 @@
         <p>如果圖片無法順利儲存，請自行右鍵存圖（手機長按圖片存圖）</p>
     </div>
 
+
+
+
     <br><br>
 
+
+
+    <!--【說明】區域-->
     <div class="box">
         <h2>說明</h2>
 
-        說明：可以簡單快速的將【為美好的世界獻上祝福！(この素晴らしい世界に祝福を!)】中出現的異世界文字輸出成圖片。<br> 版本：1.0.1
+        說明：可以簡單快速的將【為美好的世界獻上祝福！(この素晴らしい世界に祝福を!)】中出現的異世界文字輸出成圖片。<br> 版本：1.0.2
         <br>
         討論區：
         <a href="" target="_blank">討論區</a>
@@ -491,15 +615,25 @@
         網站作者：
         <a href="https://home.gamer.com.tw/homeindex.php?owner=hbl917070" target="_blank">hbl917070（深海異音）</a>
 
+        <br><br>
+
+        對照表：
+        <br>
+        <a href="imgs/comparison.png" target="_blank">
+            <img src="imgs/comparison.png" style="max-width:100%" />
+        </a>
+
     </div>
+
+
+
 
     <br><br>
 
 
 
 
-
-    <script>
+    <script type="text/javascript">
 
 
         ///
@@ -511,14 +645,32 @@
         if (useragent.indexOf('iphone') != -1 || useragent.indexOf('ipad') != -1 || useragent.indexOf('ipod') != -1 || useragent.indexOf('android') != -1) {
 
         } else {
+
+            //啟用進階編輯
             var js = document.createElement("script")
             js.src = "ckeditor/ckeditor.js";
             document.body.appendChild(js);
+
+            //隱藏只有手機才需要的功能
+            var style = document.createElement("style")
+            style.innerHTML = ".only_phone{display:none;}";
+            document.body.appendChild(style);
+
         }
 
 
 
+        ///
+        /// 圖片輸出完成後自動計算size
+        ///
+        document.getElementById("img_output").onload = function () {
+            var x = "size : ( " + this.naturalWidth + " , " + this.naturalHeight + " )";
+            document.getElementById("div_img_size").innerHTML = x;
+        };
+
+
     </script>
+
 
 </body>
 </html>
