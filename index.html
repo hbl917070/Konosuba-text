@@ -258,6 +258,16 @@
         input[type=range] {
             width: 100px;
         }
+
+        label {
+            /*禁止選取*/
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
     </style>
 
 
@@ -534,6 +544,8 @@
 
 
     <!--【編輯】區域-->
+    <h2 style="margin-bottom:-20px;font-size: 24px;font-family:'微軟正黑體'">編輯區</h2>
+    <br>
     <div id="center">
 
         <div id="editor1" class="edit" contenteditable="true">
@@ -553,7 +565,7 @@
                             <img data-cke-saved-src="imgs/-.png" src="imgs/-.png" alt="" style="width:40px;"><br>
                         </td>
                         <td style="height: 80px; width: 511px;">
-                            <span style="font-family:微軟正黑體;">__________________________________</span><br>
+                            <span style="font-family:微軟正黑體;">________________________________</span><br>
                         </td>
                     </tr>
                     <tr>
@@ -561,7 +573,7 @@
                         <td style="text-align: center;">
                             <img data-cke-saved-src="imgs/-.png" src="imgs/-.png" alt="" style="width:40px;"><br>
                         </td>
-                        <td style="width: 511px;"><span style="font-family:微軟正黑體;">_______________ //________________</span><br></td>
+                        <td style="width: 511px;"><span style="font-family:微軟正黑體;">_____________ / /________________</span><br></td>
                     </tr>
                 </tbody>
             </table><br><hr><p>
@@ -570,7 +582,7 @@
                     說明：
                     <br>
                     這裡輸入的英文與數字會轉換成對應的異世界文字<br>
-                    電腦版點擊文章區域後就會出現進階編輯選項<br>
+                    電腦版點擊編輯區後就會出現進階編輯選項<br>
                 </span><br>
             </p><hr><p>
                 <span style="font-family:微軟正黑體;">字型【Konosuba】</span>
@@ -649,25 +661,79 @@
     <div class="box">
         <h2>說明</h2>
 
-        說明：可以簡單快速的將【為美好的世界獻上祝福！(この素晴らしい世界に祝福を!)】中出現的異世界文字輸出成圖片。<br> 版本：1.1.0
-        <br>
-        討論區：
-        <a href="" target="_blank">討論區</a>
-        <br>
-        字體作者：
-        <a href="https://home.gamer.com.tw/creationDetail.php?sn=3581944" target="_blank">mdma98765432（里繆艾萊．赫．瓦萊）</a>
 
-        <br>
-        網站作者：
-        <a href="https://home.gamer.com.tw/homeindex.php?owner=hbl917070" target="_blank">hbl917070（深海異音）</a>
 
-        <br><br>
 
-        對照表：
-        <br>
-        <a href="imgs/comparison.png" target="_blank">
-            <img src="imgs/comparison.png" style="max-width:100%" />
-        </a>
+        <style>
+            .table_expl {
+                border-collapse: collapse;
+                border: 1px solid #fff;
+            }
+
+                .table_expl td {
+                    /*border-top: 1px solid #b5b5b5;*/
+                    border-bottom: 1px solid #cecece;
+                    padding: 5px;
+                }
+        </style>
+
+
+        <table border="0" class="table_expl">
+            <tr>
+                <td>說明</td>
+                <td>
+                    可以簡單快速的將【
+                    <a href="http://konosuba.com/" target="_blank">為美好的世界獻上祝福！(この素晴らしい世界に祝福を!)</a>
+                    】中出現的異世界文字輸出成圖片。
+                    <br>
+                </td>
+            </tr>
+
+            <tr>
+                <td>版本</td>
+                <td>1.1.2</td>
+            </tr>
+            <tr>
+                <td> 討論區</td>
+                <td>
+                    <a href="" target="_blank">討論區</a>
+                </td>
+            </tr>
+            <tr>
+                <td>字體作者</td>
+                <td>
+                    <a href="https://home.gamer.com.tw/creationDetail.php?sn=3581944" target="_blank">mdma98765432（里繆艾萊．赫．瓦萊）</a>
+
+                </td>
+            </tr>
+            <tr>
+                <td>素材作者</td>
+                <td>
+                    <a href="https://www.ptt.cc/bbs/C_Chat/M.1488534492.A.7F1.html" target="_blank">Yirgacrow (Yirgacrow)</a>
+                </td>
+            </tr>
+            <tr>
+                <td>網站作者</td>
+                <td>
+                    <a href="https://home.gamer.com.tw/homeindex.php?owner=hbl917070" target="_blank">hbl917070（深海異音）</a>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td>對照表</td>
+                <td>
+                    <a href="imgs/comparison.png" target="_blank">
+                        <img src="imgs/comparison.png" style="max-width:100%" />
+                    </a>
+                </td>
+            </tr>
+
+
+
+        </table>
+
+
 
     </div>
 
