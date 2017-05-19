@@ -27,7 +27,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.fontSize_sizes = '12/12px;16/16px;20/20px;24/24px;36/36px;48/48px;60/60px;72/72px;90/90px;';
 	
 	//字體
-	config.font_names = 'KonosubaMK3;微軟正黑體;新細明體;標楷體;Arial;Arial Black;Comic Sans MS;Courier New;Tahoma;Times New Roman;Verdana';
+	config.font_names = 'Konosuba;KonosubaCube;微軟正黑體;新細明體;標楷體;Arial;Arial Black;Comic Sans MS;Courier New;Tahoma;Times New Roman;Verdana';
 	
 	//還原次數
 	config.undoStackSize = 50;
@@ -36,6 +36,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.enterMode = CKEDITOR.ENTER_BR;
 	config.shiftEnterMode = CKEDITOR.ENTER_P;
 
-
-
+	//true = 允許特殊語法
+	config.allowedContent = true;
+	
 };
