@@ -16,7 +16,6 @@
     -->
     <script type="text/javascript" async="" src="html2canvas.js"></script>
     <!--<script type="text/javascript" src="ckeditor/ckeditor.js"></script>-->
-
     <!--字體-->
     <style type="text/css">
         @font-face {
@@ -455,7 +454,7 @@
             老舊效果
         </label>
 
-     
+
 
         <div class="only_phone">
             <div style="height:15px;"></div>
@@ -580,7 +579,7 @@
 
 
 
-  
+
 
         function fun_上一步() {
             var editor = CKEDITOR.instances.editor1;//editor1 = id
@@ -724,12 +723,21 @@
                 border-collapse: collapse;
                 border: 1px solid #fff;
             }
-
+                /*水平線*/
                 .table_expl td {
                     /*border-top: 1px solid #b5b5b5;*/
                     border-bottom: 1px solid #cecece;
                     padding: 5px;
                 }
+                    /*垂直線*/
+                    .table_expl td:first-child {
+                        border-right: 1px solid #cecece;
+                        padding: 5px;
+                    }
+            /*隱藏會後的水平線*/
+            .none_border td {
+                border-bottom: 0px solid #cecece !important;
+            }
         </style>
 
 
@@ -746,7 +754,7 @@
 
             <tr>
                 <td>版本</td>
-                <td>1.1.4</td>
+                <td>1.1.5</td>
             </tr>
             <tr>
                 <td> 討論區</td>
@@ -775,7 +783,7 @@
                 </td>
             </tr>
 
-            <tr>
+            <tr class="none_border">
                 <td>對照表</td>
                 <td>
                     <a href="imgs/comparison.png" target="_blank">
@@ -822,8 +830,15 @@
         var bool_phone = useragent.indexOf('iphone') != -1 || useragent.indexOf('ipad') != -1 || useragent.indexOf('ipod') != -1 || useragent.indexOf('android') != -1;//判斷是否為手機
         var bool_ie = useragent.indexOf('trident') != -1 || useragent.indexOf('msie') != -1;//判斷是否為IE
 
+        //如果是IE的話
         if (bool_ie) {
-            alert("若使用IE瀏覽器，可能導致字體無法使用");
+            alert(
+                "IE瀏覽器可能導致字體無法正常顯示，可以改用以下瀏覽器：" + "\n" +
+                " * Google Chrome" + "\n" +
+                " * Firefox(火狐)" + "\n" +
+                " * Opera" + "\n" +
+                " * Edge" + "\n"
+           );
         }
 
 
@@ -831,14 +846,13 @@
         if (bool_phone) {//首頁
 
 
-
             //
             //隱藏編輯選單
             var style = document.createElement("style")
-            style.innerHTML ="#cke_editor1{display: none !important;}";
+            style.innerHTML = "#cke_editor1{display: none !important;}";
             document.body.appendChild(style);
 
-            //啟用進階編輯
+            //用簡易版的ckeditor
             var js = document.createElement("script")
             js.src = "ckeditor_phone/ckeditor.js";
             document.body.appendChild(js);
@@ -849,7 +863,7 @@
 
         } else {//電腦
 
-            //啟用進階編輯
+            //啟用完整版的ckeditor
             var js = document.createElement("script")
             js.src = "ckeditor/ckeditor.js";
             document.body.appendChild(js);
@@ -868,7 +882,7 @@
     </script>
 
 
-  
+
 
 
 </body>
