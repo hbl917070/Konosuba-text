@@ -595,7 +595,8 @@
 
         function fun_清除格式() {
             var editor = CKEDITOR.instances.editor1;//editor1 = id
-            var s_html = document.getElementById('editor1').innerText;
+            //var s_html = document.getElementById('editor1').innerText;
+            var s_html = document.getElementById('editor1').textContent;
             editor.setData(s_html);//
         }
 
@@ -754,7 +755,7 @@
 
             <tr>
                 <td>版本</td>
-                <td>1.1.5</td>
+                <td>1.1.51</td>
             </tr>
             <tr>
                 <td> 討論區</td>
