@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css">
     -->
     <script type="text/javascript" async="" src="html2canvas.js"></script>
-
+    <!--<script type="text/javascript" src="ckeditor/ckeditor.js"></script>-->
 
     <!--字體-->
     <style type="text/css">
@@ -64,7 +64,7 @@
             }
 
         #center {
-            margin: 10px;
+            margin: 10px 3px;
             padding: 10px;
             font-size: 30px;
             position: relative;
@@ -278,6 +278,20 @@
 
     <script type="text/javascript">
 
+        ///
+        ///
+        ///
+        window.addEventListener("load", function () {
+            ///
+            /// 圖片輸出完成後自動計算size
+            ///
+            document.getElementById("img_output").onload = function () {
+                var x = "size : ( " + this.naturalWidth + " , " + this.naturalHeight + " )";
+                document.getElementById("div_img_size").innerHTML = x;
+            };
+
+        });
+
 
         ///
         ///
@@ -387,6 +401,9 @@
 
         }
 
+
+
+
     </script>
 
 
@@ -396,6 +413,14 @@
 
 
 <body>
+
+
+
+
+
+
+
+
 
     <!--轉換中-->
     <div id="div_loading" style="display:none">
@@ -430,10 +455,7 @@
             老舊效果
         </label>
 
-        <div style="height:15px;"></div>
-
-        角落裝飾大小<input type="tel" id="text_4_corner" value="150" style="width:80px" />
-        px
+     
 
         <div class="only_phone">
             <div style="height:15px;"></div>
@@ -443,6 +465,10 @@
             </label>
         </div>
 
+        <div style="height:15px;"></div>
+
+        角落裝飾大小<input type="tel" id="text_4_corner" value="150" style="width:80px" />
+        px
 
         <div style="height:15px;"></div>
 
@@ -537,15 +563,45 @@
 
     </script>
 
-
+    <!--【編輯】區域-->
     <br><br>
 
-
-
-
-    <!--【編輯】區域-->
     <h2 style="margin-bottom:-20px;font-size: 24px;font-family:'微軟正黑體'">編輯區</h2>
     <br>
+
+    <div class="but" style="background-color:rgb(0, 157, 109);" onclick="fun_上一步()">上一步</div>
+    <div class="but" style="background-color:rgb(255, 138, 79);" onclick="fun_清除格式()">移除所有格式</div>
+    <!--<div class="but" style="background-color:rgb(255, 138, 79);" onclick="document.execCommand('removeFormat');">移除所有格式</div>-->
+
+    <div class="but" style="background-color:rgb(255, 84, 79);" onclick="fun_清空()">清空內容</div>
+    <br>
+
+    <script type="text/javascript">
+
+
+
+  
+
+        function fun_上一步() {
+            var editor = CKEDITOR.instances.editor1;//editor1 = id
+            editor.execCommand('undo');//
+            //document.execCommand('undo', false, null);
+        }
+
+        function fun_清空() {
+            var editor = CKEDITOR.instances.editor1;//editor1 = id
+            editor.setData("");//
+        }
+
+
+        function fun_清除格式() {
+            var editor = CKEDITOR.instances.editor1;//editor1 = id
+            var s_html = document.getElementById('editor1').innerText;
+            editor.setData(s_html);//
+        }
+
+    </script>
+
     <div id="center">
 
         <div id="editor1" class="edit" contenteditable="true">
@@ -623,12 +679,11 @@
     <br>
 
 
-    <!--按鈕群-->
-    <div class="but" onclick="fun_截圖()"> 匯出成圖片</div>
-    <a>　</a>
-    <div class="but" style="background-color:rgb(255, 138, 79);" onclick="document.getElementById('editor1').innerHTML=document.getElementById('editor1').innerText">移除所有格式</div>
-    <a></a>
-    <div class="but" style="background-color:rgb(255, 84, 79);" onclick="document.getElementById('editor1').innerHTML = ''">清空內容</div>
+    <!---->
+    <div class="but" onclick="fun_截圖()">匯出成圖片</div>
+
+
+
 
 
     <br><br><br><br>
@@ -742,7 +797,15 @@
 
     <br><br>
 
-
+    <style>
+        #cke_editor1 {
+            /*display:block !important;*/
+            /*display: none !important;*/
+            position: fixed !important;
+            top: 10px !important;
+            left: 10px !important;
+        }
+    </style>
 
 
     <script type="text/javascript">
@@ -764,8 +827,23 @@
         }
 
 
+
         if (bool_phone) {//首頁
 
+
+
+            //
+            //隱藏編輯選單
+            var style = document.createElement("style")
+            style.innerHTML ="#cke_editor1{display: none !important;}";
+            document.body.appendChild(style);
+
+            //啟用進階編輯
+            var js = document.createElement("script")
+            js.src = "ckeditor_phone/ckeditor.js";
+            document.body.appendChild(js);
+
+            //修改預設顯示的內容
             var s_html = '<span style="font-size:36px;"></span><p><span style="font-size:36px;">說明：<br>這裡輸入的英文與數字會轉換成對應的異世界文字</span><br></p><p><span style="font-family:微軟正黑體;">字型【Konosuba】</span><br><br><span style="font-family:微軟正黑體;">a~z:</span><br>abcdefgh<br>ijklmnop<br>qrstuvwx<br>yz<br><br><span style="font-family:微軟正黑體;">A~Z:</span><br>ABCDEFGH<br>IJKLMNOP<br>QRSTUVWX<br>YZ<br><br><span style="font-family:微軟正黑體;">0~9</span><br>0123456789<br></p>';
             document.getElementById("editor1").innerHTML = s_html;
 
@@ -785,16 +863,12 @@
 
 
 
-        ///
-        /// 圖片輸出完成後自動計算size
-        ///
-        document.getElementById("img_output").onload = function () {
-            var x = "size : ( " + this.naturalWidth + " , " + this.naturalHeight + " )";
-            document.getElementById("div_img_size").innerHTML = x;
-        };
 
 
     </script>
+
+
+  
 
 
 </body>

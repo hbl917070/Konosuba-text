@@ -23,7 +23,6 @@ CKEDITOR.editorConfig = function( config ) {
 
     config.removeButtons = 'Source,Save,NewPage,Preview,Print,Templates,Cut,Undo,Redo,Paste,PasteText,Copy,PasteFromWord,Replace,SelectAll,Scayt,Form,Checkbox,Radio,Textarea,Select,Button,ImageButton,HiddenField,TextField,Blockquote,CreateDiv,Language,BidiLtr,Link,Unlink,Anchor,Flash,SpecialChar,Iframe,Maximize,About,Find,Superscript,Subscript,BidiRtl,Smiley,Styles,Format,PageBreak,Image,CopyFormatting';
 
-	//字型size
 	config.fontSize_sizes = '12/12px;16/16px;20/20px;24/24px;36/36px;48/48px;60/60px;72/72px;90/90px;';
 	
 	//字體
@@ -38,5 +37,8 @@ CKEDITOR.editorConfig = function( config ) {
 
 	//true = 允許特殊語法
 	config.allowedContent = true;
-	
+
+
+
+
 };
