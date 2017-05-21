@@ -287,6 +287,7 @@
             document.getElementById("img_output").onload = function () {
                 var x = "size : ( " + this.naturalWidth + " , " + this.naturalHeight + " )";
                 document.getElementById("div_img_size").innerHTML = x;
+
             };
 
         });
@@ -606,17 +607,23 @@
 
         <div id="editor1" class="edit" contenteditable="true">
 
-            <p style="text-align: center;font-size:36px;">
+            <p style="text-align:center; font-size:36px;">
                 <img data-cke-saved-src="imgs/line_up.png" src="imgs/line_up.png" style="width:80%"><br>
-                <span style="font-size:48px;">異世界文字編輯器</span><br>
-                <img data-cke-saved-src="imgs/line_bottom.png" src="imgs/line_bottom.png" style="width:80%"><br>
+                <span style="font-size:48px;">異世界文字編輯器</span>
+                <br>
+                <img data-cke-saved-src="imgs/line_bottom.png" src="imgs/line_bottom.png" style="width:80%;margin-top:10px;margin-bottom:10px;" vspace="10">
+
+                <br>
+
             </p><p style="text-align: center;font-size:36px;">
                 <img data-cke-saved-src="imgs/logo.png" src="imgs/logo.png" alt="" style="width:250px;"><br>
             </p>
             <table class="cke_show_border" width="698" cellspacing="1" cellpadding="1" border="0" align="center" height="172">
                 <tbody>
                     <tr>
-                        <td style="text-align: center;"><span style="font-size:24px;">ONAMAE</span><br></td>
+                        <td style="text-align: center;">
+                            <span style="font-size:24px;">ONAMAE</span><br>
+                        </td>
                         <td style="width: 80px; text-align: center;">
                             <img data-cke-saved-src="imgs/-.png" src="imgs/-.png" alt="" style="width:40px;"><br>
                         </td>
@@ -625,7 +632,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="height: 80px; text-align: center;"><span style="font-size:24px;">SEIBETSU<br>NENREI</span></td>
+                        <td style="height: 80px; text-align: center;">
+                            <span style="font-size:24px;">SEIBETSU<br>NENREI</span>
+                        </td>
                         <td style="text-align: center;">
                             <img data-cke-saved-src="imgs/-.png" src="imgs/-.png" alt="" style="width:40px;"><br>
                         </td>
@@ -642,11 +651,14 @@
                 </span><br>
             </p><hr><p>
                 <span style="font-family:微軟正黑體;">字型【Konosuba】</span>
-                <br><br><span style="font-family:微軟正黑體;">a~z:</span>
-                <br>abcdefgh<br>ijklmnop<br>qrstuvwx<br>yz<br><br><span style="font-family:微軟正黑體;">A~Z:</span><br>ABCDEFGH<br>IJKLMNOP<br>QRSTUVWX<br>YZ<br><br><span style="font-family:微軟正黑體;">0~9</span><br>0123456789<br>
+                <br><br>
+                <span style="font-family:微軟正黑體;">a~z:</span><br>abcdefgh<br>ijklmnop<br>qrstuvwx<br>yz<br><br>
+                <span style="font-family:微軟正黑體;">A~Z:</span><br>ABCDEFGH<br>IJKLMNOP<br>QRSTUVWX<br>YZ<br><br>
+                <span style="font-family:微軟正黑體;">0~9</span><br>0123456789<br>
             </p><hr><p>
                 <span style="font-family:微軟正黑體;">字型【KonosubaCube</span>
-                <span style="font-family:KonosubaCube;">】<br><br></span><span style="font-family:微軟正黑體;">a~z:</span>
+                <span style="font-family:KonosubaCube;">】<br><br></span>
+            <span style="font-family:微軟正黑體;">a~z:</span>
                 <span style="font-family:KonosubaCube;">
                     <br>abcdefgh<br>ijklmnop<br>qrstuvwx<br>yz<br>
                 </span>
@@ -755,7 +767,7 @@
 
             <tr>
                 <td>版本</td>
-                <td>1.1.51</td>
+                <td>1.1.6</td>
             </tr>
             <tr>
                 <td> 討論區</td>
