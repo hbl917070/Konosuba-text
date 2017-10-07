@@ -10,7 +10,7 @@
 
 <br><br>
 
-<img src="https://i.imgur.com/9s9SVvW.gif" />
+<img src="https://i.imgur.com/Qi97xiP.jpg" />
 
 <br>
 
@@ -31,4 +31,5 @@ https://www.ptt.cc/bbs/C_Chat/M.1488534492.A.7F1.html
 <br><br>
 
 字型作者&載點<br>
-mdma98765432（里繆艾萊．赫．瓦萊）
+mdma98765432（里繆艾萊．赫．瓦萊）<br>
+https://home.gamer.com.tw/creationDetail.php?sn=3504010
